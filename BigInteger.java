@@ -9,7 +9,7 @@ public class BigInteger
     private static final String QUIT_COMMAND = "quit";
     private static final String MSG_INVALID_INPUT = "입력이 잘못되었습니다.";
  
-    private static final Pattern EXPRESSION_PATTERN = Pattern.compile("\\ *([+\\-]?)\\ *([0-9]+)\\ *([+\\-\\*])\\ *([+\\-]?)\\ *([0-9]+)\\ *");
+    private static final Pattern EXPRESSION_PATTERN = Pattern.compile(" *([+\\-]?) *(0|[1-9][0-9]*) *([+\\-\\*]) *([+\\-]?) *(0|[1-9][0-9]*) *");
 
 	// Function for adding character array to character array with fixed size order of length.
 	private static char[] addValue(char[] opLong, char[] opShort) {
@@ -98,7 +98,8 @@ public class BigInteger
 		int oneDigit = Character.getNumericValue(opShort[0]);
 		if (oneDigit == 0) {
 			//Error with first 0 character.
-			throw new IllegalArgumentException();
+			result = new char[1];
+			result[0] = '0';
 		} else {
 			//Initializing result.
 			result = oneDigitMult[oneDigit-1];

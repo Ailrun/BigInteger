@@ -208,6 +208,7 @@ public class BigInteger
 			int index = 0;
 			while (result == 0 && index < length) {
 				result = value[index] - op.value[index];
+				index++;
 			}
 			return result;
 		}

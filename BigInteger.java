@@ -98,8 +98,7 @@ public class BigInteger
 		int oneDigit = Character.getNumericValue(opShort[0]);
 		if (oneDigit == 0) {
 			//Error with first 0 character.
-			result = new char[1];
-			result[0] = '0';
+			throw IllegalArgumentException();
 		} else {
 			//Initializing result.
 			result = oneDigitMult[oneDigit-1];
@@ -289,6 +288,14 @@ public class BigInteger
  
     public BigInteger multiply(BigInteger big)
     {
+		if (isZero()) {
+			return new BigInteger(0);
+		}
+
+		if (big.isZero()) {
+			return new BigInteger(0);
+		}
+		
 		if (sign == big.sign) {
 			if (length > big.length) {
 				return new BigInteger("+" + new String(multiplyValue(this.value, big.value)));
